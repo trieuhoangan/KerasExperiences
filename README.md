@@ -1,2 +1,2 @@
 # KerasExperiences
-pre-trained word2vec models : https://github.com/sonvx/word2vecVN
+pre-trained word2vec models : [click here](https://drive.google.com/open?id=0B1GKSX6YCHXlakkzQ2plZVdUUE0).
