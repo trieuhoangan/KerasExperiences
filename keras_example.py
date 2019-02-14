@@ -108,6 +108,7 @@ print('Preparing embedding matrix.')
 model = 'wiki.vi.model.bin'
 from gensim.models import KeyedVectors
 word2vec_model = KeyedVectors.load_word2vec_format(model, binary=True)
+
 embedding_layer = word2vec_model.get_keras_embedding()
 print('Training model.')
 #---------------------------------------------------------------------
@@ -116,13 +117,13 @@ print('Training model.')
 #---------------------------------------------------------------------
 sequence_input = Input(shape=(MAX_SEQUENCE_LENGTH,), dtype='int32')
 embedded_sequences = embedding_layer(sequence_input)
-x = Conv1D(300, 5, activation='relu')(embedded_sequences)
+x = Conv1D(128, 5, activation='relu')(embedded_sequences)
 x = MaxPooling1D(5)(x)
-x = Conv1D(300, 5, activation='relu')(x)
+x = Conv1D(128, 5, activation='relu')(x)
 x = MaxPooling1D(5)(x)
-x = Conv1D(300, 5, activation='relu')(x)
+x = Conv1D(128, 5, activation='relu')(x)
 x = GlobalMaxPooling1D()(x)
-x = Dense(300, activation='relu')(x)
+x = Dense(128, activation='relu')(x)
 preds = Dense(5, activation='softmax')(x)
 
 model = Model(sequence_input, preds)
